@@ -1,0 +1,21 @@
+.ligth-font {
+    color: white;
+}
+
+.dark-background {
+    background-color: lightslategrey;
+}
+
+main {
+    margin: 5px 10px 5px 10px;
+}
+
+footer {
+    padding-top: 10px;
+    padding-bottom: 10px;
+    background-color: lightslategrey;
+}
+
+textarea {
+    resize: none;
+}

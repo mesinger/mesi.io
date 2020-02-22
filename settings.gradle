@@ -1,0 +1,4 @@
+rootProject.name = 'mesi.io'
+
+include 'mesi.io'
+include 'mesi.clipboard'

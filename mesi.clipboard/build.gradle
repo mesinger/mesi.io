@@ -1,0 +1,40 @@
+plugins {
+    id 'org.springframework.boot' version '2.2.2.RELEASE'
+    id 'io.spring.dependency-management' version '1.0.8.RELEASE'
+    id "org.jetbrains.kotlin.plugin.allopen" version "1.3.61"
+    id "org.jetbrains.kotlin.plugin.noarg" version "1.3.61"
+    id "org.jetbrains.kotlin.plugin.spring" version "1.3.61"
+}
+
+dependencies {
+    implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
+    implementation 'org.springframework.boot:spring-boot-starter-web'
+    implementation 'org.springframework.boot:spring-boot-starter-thymeleaf'
+
+    implementation "org.jetbrains.kotlin:kotlin-reflect"
+
+    runtimeOnly 'mysql:mysql-connector-java:8.0.18'
+
+    testImplementation('org.springframework.boot:spring-boot-starter-test') {
+        exclude group: 'org.junit.vintage', module: 'junit-vintage-engine'
+    }
+}
+
+bootJar {
+    archiveBaseName = "mesi-clipboard"
+    archiveVersion = null
+}
+
+allOpen {
+    annotation("javax.persistence.Entity")
+    annotation("mesi.clipboard.service.AllOpenNoArg")
+}
+
+noArg {
+    annotation("javax.persistence.Entity")
+    annotation("mesi.clipboard.service.AllOpenNoArg")
+}
+
+test {
+    useJUnitPlatform()
+}
