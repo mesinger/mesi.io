@@ -1,9 +1,7 @@
 package mesi.io.clipboard.service
 
-import mesi.io.clipboard.data.ClipboardEntry
 import mesi.io.clipboard.data.ClipboardEntryRepo
-import mesi.io.clipboard.service.ClipboardContent
-import mesi.io.clipboard.service.ClipboardEntryService
+import mesi.io.common.clipboard.ClipboardEntry
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.stereotype.Component
 import java.time.LocalDateTime

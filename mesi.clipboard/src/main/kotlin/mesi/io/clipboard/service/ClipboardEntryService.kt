@@ -1,7 +1,6 @@
 package mesi.io.clipboard.service
 
-import mesi.io.clipboard.data.ClipboardEntry
-import mesi.io.clipboard.service.ClipboardContent
+import mesi.io.common.clipboard.ClipboardEntry
 
 interface ClipboardEntryService {
     fun addEntry(content : ClipboardContent) : ClipboardEntry

@@ -1,6 +1,5 @@
-package mesi.io.clipboard.data
+package mesi.io.common.clipboard
 
-import org.springframework.data.jpa.repository.JpaRepository
 import java.time.LocalDateTime
 import javax.persistence.*
 
@@ -18,5 +17,3 @@ data class ClipboardEntry (
         @Column(nullable = false)
         val timeStamp : LocalDateTime
 )
-
-interface ClipboardEntryRepo : JpaRepository<ClipboardEntry, Long>
