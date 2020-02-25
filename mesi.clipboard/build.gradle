@@ -11,6 +11,8 @@ dependencies {
     implementation 'org.springframework.boot:spring-boot-starter-web'
     implementation 'org.springframework.boot:spring-boot-starter-thymeleaf'
 
+    compile group: 'com.fasterxml.jackson.module', name: 'jackson-module-kotlin', version: '2.10.2'
+
     implementation "org.jetbrains.kotlin:kotlin-reflect"
 
     runtimeOnly 'mysql:mysql-connector-java:8.0.18'

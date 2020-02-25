@@ -1,1 +1,7 @@
 spring:
+
+logging:
+  level:
+    mesi.io: DEBUG
+  file:
+    name: log/mesi-io.log

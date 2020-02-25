@@ -1,6 +1,6 @@
 package mesi.io.clipboard.controller
 
-import mesi.io.clipboard.service.ClipboardContent
+import mesi.io.common.clipboard.ClipboardContent
 import mesi.io.clipboard.service.ClipboardEntryService
 import mesi.io.common.clipboard.ClipboardEntry
 import org.springframework.beans.factory.annotation.Autowired
@@ -19,6 +19,7 @@ class ClipboardEntryController {
             consumes = ["application/json"],
             produces = ["application/json"]
     )
+    @CrossOrigin
     fun addClipboardEntry(@RequestBody content : ClipboardContent) : ClipboardEntry {
         return clipboardEntryService.addEntry(content)
     }
@@ -28,6 +29,7 @@ class ClipboardEntryController {
             method = [RequestMethod.GET],
             produces = ["application/json"]
     )
+    @CrossOrigin
     @ResponseBody
     fun getAllEntries() : List<ClipboardEntry> {
         return clipboardEntryService.getAll()

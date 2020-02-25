@@ -1,4 +1,4 @@
-package mesi.io.clipboard.service
+package mesi.io.common.clipboard
 
 import mesi.io.common.AllOpenNoArg
 

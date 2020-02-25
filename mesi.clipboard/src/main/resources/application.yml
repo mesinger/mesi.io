@@ -3,11 +3,17 @@ spring:
   datasource:
     platform: mysql
     driver-class-name: com.mysql.cj.jdbc.Driver
-    name: mesiclipboarddb
-    url: "jdbc:mysql://mesiclipboarddb:3306/mesiclipboarddb?autoReconnect=true"
+    name: clipboarddb
+    url: "jdbc:mysql://mesi-io-clipboard-db:3306/clipboarddb?autoReconnect=true"
     username: root
     password: root
 
   jpa:
     show-sql: true
     hibernate.ddl-auto: update
+
+logging:
+  level:
+    mesi.io: DEBUG
+  file:
+    name: log/mesi-io-clipboard.log

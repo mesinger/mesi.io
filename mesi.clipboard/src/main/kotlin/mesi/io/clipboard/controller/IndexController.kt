@@ -1,6 +1,6 @@
 package mesi.io.clipboard.controller
 
-import mesi.io.clipboard.service.ClipboardContent
+import mesi.io.common.clipboard.ClipboardContent
 import mesi.io.clipboard.service.ClipboardEntryService
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.stereotype.Controller
