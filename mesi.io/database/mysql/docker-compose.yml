@@ -1,0 +1,11 @@
+version: '3.7'
+
+services:
+  mesi-io-db:
+    container_name: 'mesi-io-db'
+    image: 'mysql:8.0.19'
+    ports:
+      - 3306:3306
+    environment:
+      - MYSQL_ROOT_PASSWORD=root
+      - MYSQL_DATABASE=mesidb

@@ -4,7 +4,6 @@ import java.time.LocalDateTime
 import javax.persistence.*
 
 @Entity
-@Table(name = "clipboardentries")
 data class ClipboardEntry (
 
         @Id

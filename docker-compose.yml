@@ -8,35 +8,29 @@ services:
 
     ports:
       - 80:8080
+      - 443:443
 
     volumes:
       - ./logs/mesi.io:/mesi.io/log
 
     networks:
       - frontend
-
-  mesi-io-clipboard-service:
-    build: ./mesi.clipboard
-    container_name: mesi-io-clipboard-service
-
-    volumes:
-      - ./logs/mesi.io.clipboard:/mesi.io.clipboard/log
-
-    networks:
-      - frontend
       - backend
 
     depends_on:
-      mesi-io-clipboard-db:
+      mesi-io-db:
         condition: service_healthy
 
-  mesi-io-clipboard-db:
-    container_name: mesi-io-clipboard-db
-    image: mysql:8.0.18
+  mesi-io-db:
+    container_name: mesi-io-db
+    image: mysql:8.0.19
+
+    ports:
+      - 3306:3306
 
     environment:
       - MYSQL_ROOT_PASSWORD=root
-      - MYSQL_DATABASE=clipboarddb
+      - MYSQL_DATABASE=mesidb
 
     networks:
       - backend

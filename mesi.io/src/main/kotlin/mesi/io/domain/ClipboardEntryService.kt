@@ -1,9 +1,9 @@
-package mesi.io.data
+package mesi.io.domain
 
 import mesi.io.common.clipboard.ClipboardContent
 import mesi.io.common.clipboard.ClipboardEntry
 
-interface ClipboardServiceApi {
+interface ClipboardEntryService {
+    fun addEntry(content : ClipboardContent) : ClipboardEntry
     fun getAll() : List<ClipboardEntry>
-    fun add(content : ClipboardContent)
 }

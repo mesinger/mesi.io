@@ -1,4 +1,4 @@
-package mesi.io.clipboard.controller
+package mesi.io.controller
 
 import com.fasterxml.jackson.core.JsonParseException
 import com.fasterxml.jackson.databind.exc.MismatchedInputException

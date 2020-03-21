@@ -1,4 +1,4 @@
-package mesi.io.clipboard.data
+package mesi.io.data
 
 import mesi.io.common.clipboard.ClipboardEntry
 import org.springframework.data.jpa.repository.JpaRepository
