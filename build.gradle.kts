@@ -55,3 +55,46 @@ subprojects {
         annotation("mesi.io.domain.AllOpenNoArg")
     }
 }
+
+tasks.register("prepareDeploy") {
+
+    group = "mesi.io"
+    description = "Prepares artifacts and docker files for AWS"
+
+    println("Prepare for deployment")
+
+    if(File("deploy").exists()) {
+        delete("deploy")
+    }
+
+    dependsOn("copyProjectJarsToDeploy")
+    dependsOn("copyDockerFilesToDeploy")
+
+    doLast {
+        println("Finished")
+    }
+}
+
+tasks.register<Copy>("copyProjectJarsToDeploy") {
+
+    println("Copying artifacts to deploy")
+
+    dependsOn(":mesi.io.app:build")
+    dependsOn(":mesi.io.domain:build")
+    dependsOn(":mesi.io.clipboard:build")
+
+    from(subprojects.map { "${it.buildDir}/libs" })
+    include("*.jar")
+    into("deploy/bin")
+
+    println("Copied")
+}
+
+tasks.register<Copy>("copyDockerFilesToDeploy") {
+    println("Copying docker files to deploy")
+
+    from("${projectDir}/docker/Dockerfile", "${projectDir}/docker/docker-compose.yml")
+    into("deploy")
+
+    println("Copied")
+}
