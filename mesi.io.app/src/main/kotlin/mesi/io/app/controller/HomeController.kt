@@ -18,11 +18,20 @@ class HomeController {
     @Autowired
     private lateinit var clipboardService: ClipboardService
 
+    companion object {
+        var crashFlag : Boolean = false;
+    }
+
     @GetMapping(
             path = ["", "index"],
             produces = ["text/html"]
     )
     fun index(model : Model) : String {
+
+        if(crashFlag){
+            throw Exception("It should crash")
+        }
+
         return "index"
     }
 
