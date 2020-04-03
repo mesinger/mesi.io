@@ -15,3 +15,6 @@ dependencies {
 	implementation(project(":mesi.io.clipboard"))
 }
 
+tasks.bootRun {
+	args = listOf("--spring.profiles.active=dev")
+}

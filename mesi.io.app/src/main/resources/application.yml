@@ -1,19 +1,5 @@
 spring:
-
-  #  datasource:
-  #    platform: mysql
-  #    driver-class-name: com.mysql.cj.jdbc.Driver
-  #    name: mesi-io-db
-  #    url: "jdbc:mysql://mesi-io-db:3306/mesidb?autoReconnect=true"
-  #    username: root
-  #    password: root
-
-  data.mongo:
-    uri: 'mongodb://localhost:27017/mesiiodb'
-
-  jpa:
-    show-sql: true
-    hibernate.ddl-auto: update
+  profiles.active: prod
 
 #server:
 #  port: 8443
@@ -24,9 +10,9 @@ spring:
 #    key-store-password: password
 #    key-password: password
 #    key-alias: dummy
-#
-#logging:
-#  level:
-#    mesi.io: DEBUG
-#  file:
-#    name: log/mesi-io.log
+
+logging:
+  level:
+    mesi.io: DEBUG
+  file:
+    name: log/mesi-io.log
