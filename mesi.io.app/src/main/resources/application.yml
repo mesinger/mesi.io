@@ -1,15 +1,15 @@
 spring:
   profiles.active: prod
 
-#server:
-#  port: 8443
-#
-#  ssl:
-#    key-store: classpath:keystore.p12
-#    key-store-type: pkcs12
-#    key-store-password: password
-#    key-password: password
-#    key-alias: dummy
+server:
+  port: 8443
+
+  ssl:
+    key-store: classpath:keystore.p12
+    key-store-type: pkcs12
+    key-store-password: password
+    key-password: password
+    key-alias: dummy
 
 logging:
   level:
