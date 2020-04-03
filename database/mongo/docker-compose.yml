@@ -6,4 +6,4 @@ services:
     container_name: mesi-io-db
 
     ports:
-      - 27017:27017
+      - 27018:27017
