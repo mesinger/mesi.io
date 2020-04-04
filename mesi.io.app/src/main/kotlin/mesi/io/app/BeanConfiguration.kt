@@ -2,6 +2,8 @@ package mesi.io.app
 
 import mesi.io.clipboard.ClipboardEntryDao
 import mesi.io.clipboard.MongoClipboardEntryDao
+import mesi.io.domain.JavaTimeProvider
+import mesi.io.domain.TimeProvider
 import mesi.io.domain.clipboard.ClipboardService
 import mesi.io.domain.clipboard.DefaultClipboardService
 import org.springframework.context.annotation.Bean
@@ -15,4 +17,7 @@ internal class BeanConfiguration {
 
     @Bean
     fun clipboardEntryDao() : ClipboardEntryDao = MongoClipboardEntryDao()
+
+    @Bean
+    fun timeProvider() : TimeProvider = JavaTimeProvider()
 }

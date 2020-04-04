@@ -5,11 +5,11 @@ server:
   port: 8443
 
   ssl:
-    key-store: classpath:keystore.p12
+    key-store: classpath:lekeystore.jks
     key-store-type: pkcs12
     key-store-password: password
     key-password: password
-    key-alias: dummy
+    key-alias: lekeystore
 
 logging:
   level:
