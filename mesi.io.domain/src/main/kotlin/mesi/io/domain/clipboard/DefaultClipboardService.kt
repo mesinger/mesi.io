@@ -3,6 +3,7 @@ package mesi.io.domain.clipboard
 import mesi.io.clipboard.ClipboardEntry
 import mesi.io.clipboard.ClipboardEntryDao
 import mesi.io.clipboard.MongoClipboardEntryRepository
+import mesi.io.domain.TimeProvider
 import org.slf4j.LoggerFactory
 import org.springframework.beans.factory.annotation.Autowired
 import java.time.LocalDateTime
@@ -13,6 +14,9 @@ class DefaultClipboardService : ClipboardService {
 
     @Autowired
     private lateinit var dao : ClipboardEntryDao
+
+    @Autowired
+    private lateinit var timeProvider: TimeProvider
 
     override fun getById(id: String): ClipboardEntry? {
         return dao.getById(id)
@@ -29,7 +33,7 @@ class DefaultClipboardService : ClipboardService {
             return
         }
 
-        val newEntry = ClipboardEntry(content, LocalDateTime.now())
+        val newEntry = ClipboardEntry(content, timeProvider.currentTime())
 
         logger.info("Adding new clipboard entry $newEntry")
 
