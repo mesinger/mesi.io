@@ -1,3 +1,13 @@
 spring:
   data.mongodb:
     uri: 'mongodb://mesi-io-db:27017/mesiiodb'
+
+#server:
+#  port: 8443
+#
+#  ssl:
+#    key-store: classpath:lekeystore.jks
+#    key-store-type: pkcs12
+#    key-store-password: password
+#    key-password: password
+#    key-alias: lekeystore
