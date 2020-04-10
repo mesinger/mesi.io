@@ -6,36 +6,62 @@
 <body>
 <header th:replace="fragments/shared.html :: header"></header>
 
-<main>
-    <div th:fragment="main-container" class="pt-3 w-100 main-container m-auto">
+<main class="bg-surface">
+    <div class="main">
 
-        <form action="#" th:action="@{/clipboard}" th:object="${newEntryContent}" method="post">
-            <div class="form-group">
-                <input type="text" class="form-control" id="add-clipboard-input"
-                       placeholder="Add a new clipboard entry ..." th:field="*{raw}">
+        <div class="pt-3"></div>
+
+        <div class="container-fluid pt-2 pb-2">
+            <div class="shadow-sm rounded dashboard-item">
+                <h1 class="display-4">Clipboard</h1>
+                <form action="#" th:action="@{/clipboard}" th:object="${newEntryContent}" method="post">
+                    <div class="form-group">
+                        <input type="text" class="form-control" id="add-clipboard-input"
+                               placeholder="Add a new clipboard entry ..." th:field="*{raw}">
+                    </div>
+                    <button type="submit" class="btn w-100 button-primary">Add</button>
+                </form>
             </div>
-            <button type="submit" class="btn bg-dark-custom w-100 text-white">Add</button>
-        </form>
-
-        <h5 class="border-bottom border-white pt-3 pb-2">Recently saved clipboards</h5>
-
-        <div>
-            <th:block th:each="entry,it : ${clipboardEntries}">
-                <div class="shadow p-3 mb-2 bg-dark-custom rounded">
-                    <span th:text="${entry.content}"></span>
-                    <button class="text-white btn btn-link float-right align-top" th:onclick="'javascript:saveToClipboard(\'clipboard-text-' + ${it.index} + '\')'"><i class="material-icons">file_copy</i></button>
-                </div>
-            </th:block>
         </div>
 
-        <div>
-            <th:block th:each="entry,it : ${clipboardEntries}">
-                <input type="text" readonly class="form-control-plaintext copyable-text text-bg-color" th:id="'clipboard-text-' + ${it.index}" th:value="${entry.content}">
-            </th:block>
-        </div>
+        <div class="container-fluid pt-2 pb-2">
+            <div class="shadow-sm rounded dashboard-item">
+                <h3>Previous entries</h3>
 
+                <table class="table table-striped">
+                    <thead>
+                    <tr>
+                        <th scope="col">#</th>
+                        <th scope="col">Timestamp</th>
+                        <th scope="col"></th>
+                        <th scope="col">Content</th>
+                        <th scope="col"></th>
+                        <th scope="col"></th>
+                    </tr>
+                    </thead>
+                    <tbody>
+
+                    <th:block th:each="entry,it : ${clipboardEntries}">
+                        <tr>
+                            <th scope="row"><span th:text="${it.index + 1}"></span></th>
+                            <td colspan="2"><span th:text="${#temporals.format(entry.timeStamp, 'dd.MM.yyyy')}"></span></td>
+                            <td colspan="2"><strong th:text="${entry.content}"></strong></td>
+                            <td><a href="#" th:onclick="'javascript:saveToClipboard(\'clipboard-text-' + ${it.index} + '\')'">Copy</a></td>
+                        </tr>
+                    </th:block>
+
+                    </tbody>
+                </table>
+            </div>
+        </div>
     </div>
 </main>
+
+<div class="">
+    <th:block th:each="entry,it : ${clipboardEntries}">
+        <input type="text" readonly class="form-control-plaintext copyable-text text-white" th:id="'clipboard-text-' + ${it.index}" th:value="${entry.content}">
+    </th:block>
+</div>
 
 <footer th:replace="fragments/shared.html :: footer"></footer>
 </body>
