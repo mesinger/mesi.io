@@ -33,9 +33,7 @@
                     <tr>
                         <th scope="col">#</th>
                         <th scope="col">Timestamp</th>
-                        <th scope="col"></th>
                         <th scope="col">Content</th>
-                        <th scope="col"></th>
                         <th scope="col"></th>
                     </tr>
                     </thead>
@@ -44,8 +42,8 @@
                     <th:block th:each="entry,it : ${clipboardEntries}">
                         <tr>
                             <th scope="row"><span th:text="${it.index + 1}"></span></th>
-                            <td colspan="2"><span th:text="${#temporals.format(entry.timeStamp, 'dd.MM.yyyy')}"></span></td>
-                            <td colspan="2"><strong th:text="${entry.content}"></strong></td>
+                            <td><span th:text="${#temporals.format(entry.timeStamp, 'dd.MM.yyyy')}"></span></td>
+                            <td><strong th:text="${entry.content}"></strong></td>
                             <td><a href="#" th:onclick="'javascript:saveToClipboard(\'clipboard-text-' + ${it.index} + '\')'">Copy</a></td>
                         </tr>
                     </th:block>
