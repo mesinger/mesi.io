@@ -1,9 +1,9 @@
 version: '3.7'
 
 services:
-  mesi-io-db:
+  mesi-io-db-dev:
     image: mongo:4.2.3
-    container_name: mesi-io-db
+    container_name: mesi-io-db-dev
 
     ports:
       - 27018:27017
