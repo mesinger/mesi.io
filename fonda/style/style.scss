@@ -18,6 +18,16 @@ a {
     }
 }
 
+.button-navbar {
+    background-color: $primary-color !important;
+    color: $on-primary-color !important;
+
+    &:hover {
+        background-color: $primary-dark-color !important;
+        color: $on-primary-dark-color !important;
+    }
+}
+
 .dashboard-item-container {
     padding: 6px 5px 6px 5px;
 }

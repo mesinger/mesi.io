@@ -28,14 +28,37 @@
         <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
             <a class="navbar-brand" href="#"><img src="img/icon.svg" width="30" height="30" alt="icon"><span
                     class="ml-4 text-caccent">mesi.io</span></a>
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup"
-                aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".dual-collapse2">
                 <span class="navbar-toggler-icon"></span>
             </button>
-            <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
-                <div class="navbar-nav">
+            <div class="navbar-collapse collapse w-100 order-1 order-md-0 dual-collapse2">
+                <div class="navbar-nav mr-auto">
                     <a class="nav-item nav-link active" href="#">Home</a>
                     <a class="nav-item nav-link" href="#">Clipboard</a>
+                </div>
+            </div>
+            <div class="navbar-collapse collapse w-100 order-3 dual-collapse2">
+                <div class="navbar-nav ml-auto">
+                    <a class="navbar-btn btn button-navbar nav-item nav-link" href="#">Login</a>
+                </div>
+            </div>
+        </nav>
+        <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+            <a class="navbar-brand" href="#"><img src="img/icon.svg" width="30" height="30" alt="icon"><span
+                    class="ml-4 text-caccent">mesi.io</span></a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".dual-collapse3">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="navbar-collapse collapse w-100 order-1 order-md-0 dual-collapse3">
+                <div class="navbar-nav mr-auto">
+                    <a class="nav-item nav-link" href="#">Home</a>
+                    <a class="nav-item nav-link" href="#">Clipboard</a>
+                </div>
+            </div>
+            <div class="navbar-collapse collapse w-100 order-3 dual-collapse3">
+                <div class="navbar-nav ml-auto">
+                    <span class="navbar-text pr-3">Welcome rico</span>
+                    <a class="navbar-btn btn button-navbar nav-item nav-link" href="#">Logout</a>
                 </div>
             </div>
         </nav>
@@ -66,7 +89,6 @@
                         <thead>
                             <tr>
                                 <th scope="col">#</th>
-                                <th scope="col">Timestamp</th>
                                 <th scope="col">Content</th>
                                 <th scope="col"></th>
                             </tr>
@@ -74,13 +96,11 @@
                         <tbody>
                             <tr>
                                 <th scope="row">1</th>
-                                <td>01.01.1999</td>
                                 <td><strong>copied text 1</strong></td>
                                 <td><a href="#" onclick="javascript:saveToClipboard('clipboard-text-1')">Copy</a></td>
                             </tr>
                             <tr>
                                 <th scope="row">1</th>
-                                <td>01.01.1999</td>
                                 <td><strong>copied text 1</strong></td>
                                 <td><a href="#" onclick="javascript:saveToClipboard('clipboard-text-2')">Copy</a></td>
                             </tr>
@@ -120,12 +140,15 @@
                                     height="50px">
                                 <img src="img/springboot-50.jpg" alt="image" class="img-thumbnail" width="50px"
                                     height="50px">
-                                <img src="img/gradle-50.png" alt="image" class="img-thumbnail" width="50px" height="50px">
-                                <img src="img/mongodb-50.png" alt="image" class="img-thumbnail" width="50px" height="50px">
+                                <img src="img/gradle-50.png" alt="image" class="img-thumbnail" width="50px"
+                                    height="50px">
+                                <img src="img/mongodb-50.png" alt="image" class="img-thumbnail" width="50px"
+                                    height="50px">
                                 <img src="img/docker-logo-50.png" alt="image" class="img-thumbnail" width="50px"
                                     height="50px">
                                 <img src="img/aws-50.png" alt="image" class="img-thumbnail" width="50px" height="50px">
-                                <img src="img/nginx-50.png" alt="image" class="img-thumbnail" width="50px" height="50px">
+                                <img src="img/nginx-50.png" alt="image" class="img-thumbnail" width="50px"
+                                    height="50px">
                             </div>
                         </div>
                     </div>
@@ -136,8 +159,10 @@
     </main>
 
     <div class="">
-        <input type="text" readonly class="form-control-plaintext copyable-text text-white" id="clipboard-text-1" value="copied text 1">
-        <input type="text" readonly class="form-control-plaintext copyable-text text-white" id="clipboard-text-2" value="copied text 2">
+        <input type="text" readonly class="form-control-plaintext copyable-text text-white" id="clipboard-text-1"
+            value="copied text 1">
+        <input type="text" readonly class="form-control-plaintext copyable-text text-white" id="clipboard-text-2"
+            value="copied text 2">
     </div>
 
     <footer class="bg-primary">
