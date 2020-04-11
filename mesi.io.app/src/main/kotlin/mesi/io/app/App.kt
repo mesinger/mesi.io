@@ -7,7 +7,7 @@ import org.springframework.data.mongodb.repository.config.EnableMongoRepositorie
 
 @SpringBootApplication
 @ComponentScan(basePackages = ["mesi.io.app", "mesi.io.clipboard"])
-@EnableMongoRepositories("mesi.io.clipboard")
+@EnableMongoRepositories(basePackages = ["mesi.io.clipboard", "mesi.io.app"])
 class App
 
 fun main(args : Array<String>){

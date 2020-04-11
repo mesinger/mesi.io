@@ -7,3 +7,9 @@ services:
 
     ports:
       - 27018:27017
+
+    volumes:
+      - mesi-io-db-dev-data:/data/db
+
+volumes:
+  mesi-io-db-dev-data:
