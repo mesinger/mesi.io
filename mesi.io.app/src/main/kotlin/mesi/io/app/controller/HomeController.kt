@@ -5,13 +5,10 @@ import mesi.io.domain.clipboard.ClipboardService
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.stereotype.Controller
 import org.springframework.ui.Model
-import org.springframework.web.bind.annotation.GetMapping
-import org.springframework.web.bind.annotation.ModelAttribute
-import org.springframework.web.bind.annotation.RequestMapping
-import org.springframework.web.bind.annotation.RequestMethod
+import org.springframework.web.bind.annotation.*
 
 @Controller
-class HomeController {
+class HomeController : BaseController() {
 
     private val logger = org.slf4j.LoggerFactory.getLogger(HomeController::class.java)
 
@@ -31,15 +28,16 @@ class HomeController {
             produces = ["text/html"]
     )
     fun clipboard(model: Model) : String {
-        var clipboardEntries = clipboardService.getAll()
+        var clipboardEntries = clipboardService.getAll().map { it.content }
+        var shortenedClipboardEntries = clipboardEntries.map { if (it.length < 20) it else "${it.take(20)}..." }
         model.addAttribute("clipboardEntries", clipboardEntries)
+        model.addAttribute("shortenedClipboardEntries", shortenedClipboardEntries)
         model.addAttribute("newEntryContent", ClipboardContent(""))
         return "clipboard"
     }
 
-    @RequestMapping(
-            path = ["/clipboard"],
-            method = [RequestMethod.POST]
+    @PostMapping(
+            path = ["clipboard"]
     )
     private fun addToClipboard(model: Model, @ModelAttribute content : ClipboardContent) : String {
         clipboardService.add(content.raw)

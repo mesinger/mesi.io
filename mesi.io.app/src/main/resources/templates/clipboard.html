@@ -4,7 +4,12 @@
 <head th:replace="fragments/shared.html :: head"></head>
 
 <body>
-<header th:replace="fragments/shared.html :: header"></header>
+<header th:if="${isLoggedIn}">
+    <nav th:replace="fragments/shared :: navbar_logout"></nav>
+</header>
+<header th:unless="${isLoggedIn}">
+    <nav th:replace="fragments/shared :: navbar_login"></nav>
+</header>
 
 <main class="bg-surface">
     <div class="main">
@@ -32,18 +37,16 @@
                     <thead>
                     <tr>
                         <th scope="col">#</th>
-                        <th scope="col">Timestamp</th>
                         <th scope="col">Content</th>
                         <th scope="col"></th>
                     </tr>
                     </thead>
                     <tbody>
 
-                    <th:block th:each="entry,it : ${clipboardEntries}">
+                    <th:block th:each="entry,it : ${shortenedClipboardEntries}">
                         <tr>
                             <th scope="row"><span th:text="${it.index + 1}"></span></th>
-                            <td><span th:text="${#temporals.format(entry.timeStamp, 'dd.MM.yyyy')}"></span></td>
-                            <td><strong th:text="${entry.content}"></strong></td>
+                            <td><strong th:text="${entry}"></strong></td>
                             <td><a href="#" th:onclick="'javascript:saveToClipboard(\'clipboard-text-' + ${it.index} + '\')'">Copy</a></td>
                         </tr>
                     </th:block>
@@ -57,7 +60,7 @@
 
 <div class="">
     <th:block th:each="entry,it : ${clipboardEntries}">
-        <input type="text" readonly class="form-control-plaintext copyable-text text-white" th:id="'clipboard-text-' + ${it.index}" th:value="${entry.content}">
+        <input type="text" readonly class="form-control-plaintext copyable-text text-white" th:id="'clipboard-text-' + ${it.index}" th:value="${entry}">
     </th:block>
 </div>
 

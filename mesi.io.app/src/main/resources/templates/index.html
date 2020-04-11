@@ -4,7 +4,13 @@
 <head th:replace="fragments/shared.html :: head"></head>
 
 <body>
-<header th:replace="fragments/shared.html :: header"></header>
+
+<header th:if="${isLoggedIn}">
+    <nav th:replace="fragments/shared :: navbar_logout"></nav>
+</header>
+<header th:unless="${isLoggedIn}">
+    <nav th:replace="fragments/shared :: navbar_login"></nav>
+</header>
 
 <main class="bg-surface">
     <div class="main">

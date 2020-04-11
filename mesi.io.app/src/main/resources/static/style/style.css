@@ -76,6 +76,16 @@ a:hover {
   color: #ffffff !important;
 }
 
+.button-navbar {
+  background-color: #b71c1c !important;
+  color: #ffffff !important;
+}
+
+.button-navbar:hover {
+  background-color: #7f0000 !important;
+  color: #ffffff !important;
+}
+
 .dashboard-item-container {
   padding: 6px 5px 6px 5px;
 }

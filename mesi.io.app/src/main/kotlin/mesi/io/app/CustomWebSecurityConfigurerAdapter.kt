@@ -22,7 +22,7 @@ class CustomWebSecurityConfigurerAdapter : WebSecurityConfigurerAdapter() {
 
     override fun configure(http: HttpSecurity) {
         http.authorizeRequests()
-                .antMatchers("/clipboard").hasRole("rw_user")
+//                .antMatchers("/clipboard").hasRole("rw_user")
                 .antMatchers("/").permitAll()
                 .and().formLogin()
     }
