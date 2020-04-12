@@ -25,11 +25,10 @@ class ClipboardController {
 
     @RequestMapping(
             method = [RequestMethod.POST],
-            path = [""],
-            consumes = ["application/json"]
+            path = [""]
     )
     @ResponseStatus(HttpStatus.CREATED)
-    fun add(@RequestBody content : ClipboardContent) {
-        service.add(content.raw)
+    fun add(@RequestParam content : String) {
+        service.add(content)
     }
 }

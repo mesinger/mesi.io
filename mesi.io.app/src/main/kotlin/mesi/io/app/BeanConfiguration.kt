@@ -22,6 +22,6 @@ internal class BeanConfiguration {
     @Bean
     fun timeProvider() : TimeProvider = JavaTimeProvider()
 
-    @Bean
-    fun userDetailsService() : UserDetailsService = MongoUserDetailsService()
+//    @Bean
+//    fun userDetailsService() : UserDetailsService = MongoUserDetailsService()
 }
