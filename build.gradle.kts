@@ -48,11 +48,11 @@ subprojects {
     }
 
     allOpen {
-        annotation("mesi.io.domain.AllOpenNoArg")
+        annotation("mesi.io.domain.common.AllOpenNoArg")
     }
 
     noArg {
-        annotation("mesi.io.domain.AllOpenNoArg")
+        annotation("mesi.io.domain.common.AllOpenNoArg")
     }
 }
 
@@ -74,9 +74,10 @@ tasks.register("bundle") {
 
 tasks.register<Zip>("zipBundle") {
 
-    dependsOn(":mesi.io.app:build")
-    dependsOn(":mesi.io.domain:build")
-    dependsOn(":mesi.io.clipboard:build")
+    dependsOn(":app:build")
+    dependsOn(":data-clipboard:build")
+    dependsOn(":domain-common:build")
+    dependsOn(":domain-clipboard:build")
 
     archiveFileName.set("bundle.zip")
     destinationDirectory.set(file("$projectDir"))

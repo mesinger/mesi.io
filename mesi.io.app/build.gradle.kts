@@ -7,8 +7,9 @@ dependencies {
 
 	implementation("com.fasterxml.jackson.module:jackson-module-kotlin:2.10.2")
 
-	implementation(project(":mesi.io.domain"))
-	implementation(project(":mesi.io.clipboard"))
+	implementation(project(":domain-clipboard"))
+	implementation(project(":domain-common"))
+	implementation(project(":data-clipboard"))
 }
 
 tasks.bootRun {
