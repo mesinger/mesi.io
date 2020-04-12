@@ -1,6 +1,8 @@
 spring:
   profiles.active: prod
 
+  mvc.favicon.enabled: false
+
 logging:
   level:
     mesi.io: DEBUG
