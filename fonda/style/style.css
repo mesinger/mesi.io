@@ -92,5 +92,7 @@ a:hover {
 
 .dashboard-item {
   padding: 4px 6px 4px 6px;
+  -webkit-box-shadow: 5px 6px 10px #d6d3d3;
+          box-shadow: 5px 6px 10px #d6d3d3;
 }
 /*# sourceMappingURL=style.css.map */
