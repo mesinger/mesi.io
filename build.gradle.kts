@@ -88,6 +88,10 @@ tasks.register<Copy>("createBundle") {
         into("frontend/app")
     }
 
+    from("docker/frontend") {
+        into("frontend")
+    }
+
     from("docker/docker-compose.yml")
 
     into("bundle")

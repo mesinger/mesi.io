@@ -5,12 +5,6 @@
         <h1 class="display-4">Clipboard</h1>
         <input v-model="newEntry" type="text" class="form-control" placeholder="Add a new clipboard entry ...">
         <button @click="addNewEntry" class="btn mt-2 w-100 button-primary">Add</button>
-        <!-- <form>
-          <div class="form-group">
-            <input type="text" class="form-control" placeholder="Add a new clipboard entry ..." />
-          </div>
-          <button type="submit" class="btn w-100 button-primary">Add</button>
-        </form> -->
       </div>
     </div>
 
@@ -59,7 +53,7 @@ export default {
     }
   },
   mounted: function () {
-    fetch('http://localhost:40200/api/clipboard', {
+    fetch('https://api.mesi.io/clipboard', {
       method: 'get'
     })
       .then(response => {
@@ -74,14 +68,14 @@ export default {
       this.$copyText(content)
     },
     addNewEntry: function() {
-      axios.post('http://localhost:40200/api/clipboard?content=' + this.newEntry)
+      axios.post('https://api.mesi.io/clipboard?content=' + this.newEntry)
       .then(response => {
         if(response.status === 201) {
           this.entries.unshift({content: this.newEntry, timeStamp: ''})
           this.newEntry = ''
         }
       })
-      .catch(error => console.log(error))
+      .catch(error => console.log("can't access api"))
     }
   }
 }

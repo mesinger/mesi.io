@@ -1,6 +1,5 @@
 package mesi.io.app.controller
 
-import mesi.io.domain.clipboard.ClipboardContent
 import mesi.io.data.clipboard.ClipboardEntry
 import mesi.io.domain.clipboard.ClipboardService
 import org.springframework.beans.factory.annotation.Autowired
@@ -8,7 +7,7 @@ import org.springframework.http.HttpStatus
 import org.springframework.web.bind.annotation.*
 
 @RestController
-@RequestMapping("api/clipboard")
+@RequestMapping("clipboard")
 class ClipboardController {
 
     @Autowired
