@@ -59,7 +59,7 @@ export default {
     }
   },
   mounted: function () {
-    fetch('http://localhost:8081/api/clipboard', {
+    fetch('http://localhost:40200/api/clipboard', {
       method: 'get'
     })
       .then(response => {
@@ -74,7 +74,7 @@ export default {
       this.$copyText(content)
     },
     addNewEntry: function() {
-      axios.post('http://localhost:8081/api/clipboard?content=' + this.newEntry)
+      axios.post('http://localhost:40200/api/clipboard?content=' + this.newEntry)
       .then(response => {
         if(response.status === 201) {
           this.entries.unshift({content: this.newEntry, timeStamp: ''})

@@ -2,16 +2,39 @@ version: '3.7'
 
 services:
 
-  mesiclipboard-service:
-    build: .
-    container_name: mesiclipboard-service
+  mesi-io-frontend-app:
+    build: ./frontend/app
+    container_name: mesi-io-frontend-app
 
     ports:
-      - 8080:8080
-      - 8443:8443
+      - 40100:80
+
+    networks:
+      - frontend
+
+    depends_on:
+      - mesi-io-api
 
     healthcheck:
-      test: curl -f http://localhost:8080 || exit 1
+      test: curl -f http://localhost:80 || exit 1
+      interval: 1m
+      timeout: 15s
+      retries: 3
+      start_period: 1m
+
+  mesi-io-api:
+    build: ./api
+    container_name: mesi-io-api
+
+    ports:
+      - 40200:40200
+
+    networks:
+      - frontend
+      - backend
+
+    healthcheck:
+      test: curl -f http://localhost:40200/echo || exit 1
       interval: 1m
       timeout: 15s
       retries: 3
@@ -24,8 +47,8 @@ services:
     image: mongo:4.2.3
     container_name: mesi-io-db
 
-    ports:
-      - 27017:27017
+    networks:
+      - backend
 
     healthcheck:
       test: ["CMD-SHELL", "mongo"]
@@ -33,3 +56,7 @@ services:
       timeout: 10s
       retries: 3
       start_period: 10s
+
+networks:
+  frontend:
+  backend:

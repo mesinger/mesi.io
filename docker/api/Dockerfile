@@ -3,10 +3,9 @@ FROM openjdk:8
 RUN mkdir /mesi.io
 WORKDIR /mesi.io
 
-COPY mesi.io.app-0.0.2.jar app.jar
+COPY app-0.0.2.jar app.jar
 
-EXPOSE 8080
-EXPOSE 8443
+EXPOSE 40200
 
 VOLUME /mesi.io/log
 

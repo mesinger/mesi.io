@@ -31,49 +31,48 @@
                 src="img/kotlin-50.png"
                 alt="image"
                 class="img-thumbnail align-bottom"
-                width="50px"
                 height="50px"
               />
               <img
                 src="img/springboot-50.jpg"
                 alt="image"
                 class="img-thumbnail"
-                width="50px"
+                height="50px"
+              />
+              <img
+                src="img/vue-50.png"
+                alt="image"
+                class="img-thumbnail"
                 height="50px"
               />
               <img
                 src="img/gradle-50.png"
                 alt="image"
                 class="img-thumbnail"
-                width="50px"
                 height="50px"
               />
               <img
                 src="img/mongodb-50.png"
                 alt="image"
                 class="img-thumbnail"
-                width="50px"
                 height="50px"
               />
               <img
                 src="img/docker-logo-50.png"
                 alt="image"
                 class="img-thumbnail"
-                width="50px"
                 height="50px"
               />
               <img
                 src="img/aws-50.png"
                 alt="image"
                 class="img-thumbnail"
-                width="50px"
                 height="50px"
               />
               <img
                 src="img/nginx-50.png"
                 alt="image"
                 class="img-thumbnail"
-                width="50px"
                 height="50px"
               />
             </div>

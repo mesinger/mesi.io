@@ -61,36 +61,52 @@ tasks.register("bundle") {
     group = "mesi.io"
     description = "Generates a bundle with artifacts and docker files for deployment"
 
-    if(File("bundle.zip").exists()) {
-        delete("bundle.zip")
-    }
-
     dependsOn("zipBundle")
-
-    doLast {
-        println("Finished")
-    }
 }
 
-tasks.register<Zip>("zipBundle") {
-
+tasks.register<Copy>("createBundle") {
     dependsOn(":app:build")
     dependsOn(":data-clipboard:build")
     dependsOn(":domain-common:build")
     dependsOn(":domain-clipboard:build")
 
+    if(File("bundle").exists()) {
+        delete("bundle")
+    }
+
+    from(subprojects.map { "${it.buildDir}/libs" }) {
+        include("*.jar")
+        into("api")
+    }
+
+    from("docker/api") {
+        into("api")
+    }
+
+    from("mesi.io.frontend/app") {
+        exclude("node_modules")
+        into("frontend/app")
+    }
+
+    from("docker/docker-compose.yml")
+
+    into("bundle")
+}
+
+tasks.register<Zip>("zipBundle") {
+
+    dependsOn("createBundle")
+
+    if(File("bundle.zip").exists()) {
+        delete("bundle.zip")
+    }
+
     archiveFileName.set("bundle.zip")
     destinationDirectory.set(file("$projectDir"))
 
-    from(subprojects.map { "${it.buildDir}/libs" }, "${projectDir}/docker/Dockerfile", "${projectDir}/docker/docker-compose.yml")
-    include("*.jar", "Dockerfile", "*.yml")
-}
+    from("bundle")
 
-tasks.register<Copy>("copyDockerFilesToDeploy") {
-    println("Copying docker files to deploy")
-
-    from("${projectDir}/docker/Dockerfile", "${projectDir}/docker/docker-compose.yml")
-    into("deploy")
-
-    println("Copied")
+    doLast {
+        delete("bundle")
+    }
 }
