@@ -18,7 +18,6 @@ class ClipboardController {
             path = [""],
             produces = ["application/json"]
     )
-    @CrossOrigin
     fun getAll() : List<ClipboardEntry> {
         return service.getAll()
     }
@@ -28,7 +27,6 @@ class ClipboardController {
             path = [""]
     )
     @ResponseStatus(HttpStatus.CREATED)
-    @CrossOrigin
     fun add(@RequestParam content : String) {
         service.add(content)
     }

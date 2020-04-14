@@ -8,7 +8,6 @@ import mesi.io.domain.clipboard.ClipboardService
 import mesi.io.domain.clipboard.DefaultClipboardService
 import org.springframework.context.annotation.Bean
 import org.springframework.context.annotation.Configuration
-import org.springframework.security.core.userdetails.UserDetailsService
 
 @Configuration
 internal class BeanConfiguration {
