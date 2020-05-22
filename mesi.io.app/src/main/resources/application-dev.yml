@@ -1,5 +1,0 @@
-spring:
-  data.mongodb:
-    uri: 'mongodb://localhost:27018/mesiiodb'
-
-server.port: 8081
