@@ -1,0 +1,22 @@
+version: "3.1"
+
+services:
+  mesi-io-db:
+    container_name: mesi-io-db
+    image: mongo
+    ports:
+      - "27017:27017"
+    networks:
+        - backend
+  web:
+    build: .
+    ports:
+      - "8000:80"
+      - "44348:443"
+    depends_on:
+      - mesi-io-db
+    networks:
+      - backend
+
+networks:
+    backend:
