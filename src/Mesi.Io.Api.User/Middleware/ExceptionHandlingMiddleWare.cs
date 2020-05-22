@@ -42,6 +42,10 @@ namespace Mesi.Io.Api.User.MiddleWare
                     msg = JsonConvert.SerializeObject(new {message = "User with this username is already registered"});
                     code = 400;
                     break;
+                case InvalidInputException _:
+                    msg = JsonConvert.SerializeObject(new {message = "Invalid arguments"});
+                    code = 400;
+                    break;
                 default:
                     msg = JsonConvert.SerializeObject(new {message = "Internal server error"});
                     code = 500;

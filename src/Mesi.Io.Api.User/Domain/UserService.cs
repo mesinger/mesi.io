@@ -24,6 +24,8 @@ namespace Mesi.Io.Api.User.Domain
 
         public async Task<Models.User> Register(string email, string password, string username)
         {
+            if(string.IsNullOrWhiteSpace(email) || string.IsNullOrWhiteSpace(password) || string.IsNullOrWhiteSpace(username)) throw new InvalidInputException();
+            
             var existingUser = await _userRepository.GetByEmail(email);
             if(existingUser != null) throw new EmailAlreadyRegisteredException();
 
@@ -38,7 +40,7 @@ namespace Mesi.Io.Api.User.Domain
             var user = new Models.User(userId, username, email, hashedPassword, registered, roles);
             _userRepository.Save(user);
             
-            _logger.LogInformation("Registering new user: {}, {}", user.UserName, user.Email);
+            _logger.LogInformation("Registerd new user: {}, {}", user.UserName, user.Email);
 
             return user;
         }
