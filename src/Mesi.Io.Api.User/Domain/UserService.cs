@@ -61,7 +61,7 @@ namespace Mesi.Io.Api.User.Domain
                 .AddClaim("iss", "mesi.io")
                 .AddClaim("sub", user.UserId)
                 .AddClaim("aud", "default.mesi.io")
-                .AddClaim("exp", DateTimeOffset.UtcNow.AddDays(1).ToUnixTimeSeconds())
+                .AddClaim("exp", DateTimeOffset.UtcNow.AddDays(1).ToUnixTimeMilliseconds())
                 .AddClaim("name", user.UserName)
                 .AddClaim("email", user.Email)
                 .Encode();
