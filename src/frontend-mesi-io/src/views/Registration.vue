@@ -36,7 +36,7 @@
       </div>
       <button type="submit" class="btn btn-primary">Register</button>
     </form>
-    <div class="form-error-message">
+    <div class="form-error-message" v-if="hasError">
       * {{ errorMessage }}
     </div>
   </div>
@@ -81,6 +81,10 @@ export default class Registration extends Vue {
       });
 
     e.preventDefault();
+  }
+
+  get hasError(): boolean {
+    return this.errorMessage !== "";
   }
 }
 </script>

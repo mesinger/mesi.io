@@ -1,47 +1,43 @@
 <template>
   <div class="login-form">
-    <form @submit="submitLogin">
-      <div class="form-group">
-        <label for="user-email-input">Email address</label>
-        <input
-          v-model="userEmail"
-          type="email"
-          class="form-control"
-          id="user-email-input"
-          placeholder="Email"
-          required
-        />
-      </div>
-      <div class="form-group">
-        <label for="user-pw-input">Password</label>
-        <input
-          v-model="userPassword"
-          type="password"
-          class="form-control"
-          id="user-pw-input"
-          placeholder="Password"
-          required
-        />
-      </div>
-      <button type="submit" class="btn btn-primary">Submit</button>
-    </form>
+    <LoginForm :hasError="hasError"></LoginForm>
   </div>
 </template>
 
 <script lang="ts">
 import Vue from "vue";
 import axios from "axios";
+import { State, Action, Getter, namespace } from "vuex-class";
+import { ProfileState, User } from "../store/profile/types";
+import { Component, Watch } from "vue-property-decorator";
+import { AuthenticationRequest } from "@/dto/AuthenticationRequest";
+import LoginForm from "@/components/LoginForm.vue";
 
+@Component({
+  components: {
+    LoginForm,
+  },
+})
 export default class Login extends Vue {
-  private userEmail = "";
-  private userPassword = "";
+  @(namespace("profile").Getter("isLoggedIn")) isLoggedIn!: boolean;
+  @(namespace("profile").Getter("numberOfLoginAttempts"))
+  loginAttempts!: number;
 
-  submitLogin(): void {
-    return;
+  private hasError = false;
+
+  @Watch("loginAttempts")
+  onLoginAttemptsChanged(attempts: number) {
+    if (this.isLoggedIn) {
+      this.hasError = false;
+      this.$router.push("/");
+    }
+    else {
+      this.hasError = true;
+    }
   }
 
-  authenticate(): void {
-    return;
+  mounted() {
+    // this.$router.push("/");
   }
 }
 </script>

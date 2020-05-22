@@ -21,7 +21,8 @@
       </div>
       <div class="navbar-collapse collapse w-100 order-3 dual-collapse2">
         <div class="navbar-nav ml-auto">
-          <a class="navbar-btn btn button-navbar nav-item nav-link" href="/login">Login</a>
+          <a class="navbar-btn btn button-navbar nav-item nav-link" href="/login" v-if="!isLoggedIn">Login</a>
+          <span v-if="isLoggedIn">Hallo user</span>
         </div>
       </div>
     </nav>
@@ -31,6 +32,8 @@
 <script lang="ts">
 import Vue from "vue";
 import { Component } from 'vue-property-decorator';
+import { Getter, namespace } from 'vuex-class';
+import { User } from '@/store/profile/types';
 
 @Component
 export default class NavBar extends Vue {
@@ -42,5 +45,8 @@ export default class NavBar extends Vue {
   isAcive(route: string): boolean {
     return route == this.$router.currentRoute.path;
   }
+
+  @namespace("profile").Getter("isLoggedIn") isLoggedIn!: boolean;
+  @namespace("profile").Getter("currentUser") currentUser!: User | undefined;
 }
 </script>
