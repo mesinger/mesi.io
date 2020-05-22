@@ -1,3 +1,7 @@
 export interface AuthenticationToken {
-    jwt: string
+    raw: string;
+    iss: string;
+    name: string;
+    email: string;
+    exp: number;
 }

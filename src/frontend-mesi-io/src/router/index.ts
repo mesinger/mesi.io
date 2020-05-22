@@ -3,6 +3,7 @@ import VueRouter, { RouteConfig } from "vue-router";
 import Home from "../views/Home.vue";
 import Clipboard from "../views/Clipboard.vue";
 import Login from "../views/Login.vue";
+import Logout from "../views/Logout.vue";
 import Registration from "../views/Registration.vue";
 
 Vue.use(VueRouter);
@@ -22,6 +23,11 @@ const routes: Array<RouteConfig> = [
     path: "/login",
     name: "Login",
     component: Login
+  },
+  {
+    path: "/logout",
+    name: "Logout",
+    component: Logout
   },
   {
     path: "/register",

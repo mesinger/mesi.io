@@ -20,9 +20,14 @@
         </div>
       </div>
       <div class="navbar-collapse collapse w-100 order-3 dual-collapse2">
-        <div class="navbar-nav ml-auto">
+        <div class="navbar-nav ml-auto" v-if="!isLoggedIn">
           <a class="navbar-btn btn button-navbar nav-item nav-link" href="/login" v-if="!isLoggedIn">Login</a>
-          <span v-if="isLoggedIn">Hallo user</span>
+        </div>
+        <div class="navbar-nav ml-auto" v-if="isLoggedIn">
+          <span class="navbar-text user-welcome-text">
+            Welcome {{ currentUser.userName }}
+          </span>
+          <a class="navbar-btn btn button-navbar nav-item nav-link" href="/logout">Logout</a>
         </div>
       </div>
     </nav>
@@ -50,3 +55,10 @@ export default class NavBar extends Vue {
   @namespace("profile").Getter("currentUser") currentUser!: User | undefined;
 }
 </script>
+
+<style lang="scss" scoped>
+.user-welcome-text {
+  padding-top: 9px;
+  padding-right: 10px;
+}
+</style>

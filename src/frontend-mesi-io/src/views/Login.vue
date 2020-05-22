@@ -37,7 +37,9 @@ export default class Login extends Vue {
   }
 
   mounted() {
-    // this.$router.push("/");
+    if(this.isLoggedIn) {
+      this.$router.push("/");
+    }
   }
 }
 </script>

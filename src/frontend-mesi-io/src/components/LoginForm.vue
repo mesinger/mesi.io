@@ -1,5 +1,5 @@
 <template>
-  <div class="login-form">
+  <div>
     <form @submit="submitLogin">
       <div class="form-group">
         <label for="user-email-input">Email address</label>
@@ -55,8 +55,8 @@ export default class LoginForm extends Vue {
 </script>
 
 <style lang="scss" scoped>
-.login-form {
-  padding: 10px;
-  padding-bottom: 20px;
+.login-error-message {
+  padding-top: 10px;
+  color: #ff0000;
 }
 </style>

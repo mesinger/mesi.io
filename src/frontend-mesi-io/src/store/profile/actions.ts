@@ -16,5 +16,8 @@ export const actions: ActionTree<ProfileState, RootState> = {
     .catch(reason => {
       commit("authenticateError");
     });
+  },
+  logout({ commit }): any {
+    commit("logout");
   }
 };
