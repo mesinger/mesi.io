@@ -1,13 +1,16 @@
-import { AuthenticationToken } from '@/entities/user/AuthenticationToken';
-
 export interface User {
-    userName: string;
-    email: string;
+  name: string;
+  email: string;
 }
 
 export interface ProfileState {
-    user?: User;
-    token?: AuthenticationToken;
-    loggedIn: boolean;
-    loginAttempts: number;
+  token: string;
+  user: User | undefined;
+  status: AuthenticationStatus;
+}
+
+export enum AuthenticationStatus {
+  Authenticated,
+  Anonymous,
+  Error,
 }

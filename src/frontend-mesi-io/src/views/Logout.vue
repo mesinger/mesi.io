@@ -13,7 +13,7 @@ import { Action, namespace } from "vuex-class";
 export default class Logout extends Vue{
     @namespace("profile").Action("logout") logout: any;
 
-    mounted() {
+    created() {
         this.logout();
         this.$router.push("/");
     }

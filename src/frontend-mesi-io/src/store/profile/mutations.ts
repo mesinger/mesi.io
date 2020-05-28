@@ -1,33 +1,32 @@
 /* eslint-disable no-use-before-define */
 import { MutationTree } from "vuex";
-import { ProfileState, User } from "./types";
-import { JwtTokenResponse } from "@/dto/JwtTokenResponse";
+import { ProfileState, AuthenticationStatus } from "./types";
 import { decode } from "@/util/jwt";
 
 export const mutations: MutationTree<ProfileState> = {
-  authenticateError(state) {
-    state.user = undefined;
-    state.token = undefined;
-    state.loggedIn = false;
-    state.loginAttempts++;
+  authSuccess(state: ProfileState, token: string) {
+    state.status = AuthenticationStatus.Authenticated;
+    state.token = token;
+    localStorage.setItem("authentication_token", token);
+
+    const decoded = decode(token);
+    const user = {name: decoded.name, email: decoded.email};
+    state.user = {name: decoded.name, email: decoded.email};
+    localStorage.setItem("username", user.name);
+    localStorage.setItem("useremail", user.email);
   },
-  authenticateSuccess(state, payload: JwtTokenResponse) {
-    const decodedToken = decode(payload.jwt);
-    state.user = { userName: decodedToken.name, email: decodedToken.email };
-    state.token = {
-      raw: payload.jwt,
-      iss: decodedToken.iss,
-      name: decodedToken.name,
-      email: decodedToken.email,
-      exp: decodedToken.exp,
-    };
-    state.loggedIn = true;
-    state.loginAttempts++;
+  authError(state) {
+    state.status = AuthenticationStatus.Error;
+    localStorage.removeItem("authentication_token");
+    localStorage.removeItem("username");
+    localStorage.removeItem("useremail");
+    state.token = "";
   },
   logout(state) {
-    state.user = undefined;
-    state.token = undefined;
-    state.loggedIn = false;
-    state.loginAttempts = 0;
+    state.status = AuthenticationStatus.Anonymous;
+    localStorage.removeItem("authentication_token");
+    localStorage.removeItem("username");
+    localStorage.removeItem("useremail");
+    state.token = "";
   }
 };

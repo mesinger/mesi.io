@@ -1,3 +1,5 @@
+using System;
+using System.Diagnostics;
 using Mesi.Io.Api.User.Data;
 using Mesi.Io.Api.User.Domain;
 using Mesi.Io.Api.User.MiddleWare;
@@ -47,7 +49,7 @@ namespace Mesi.Io.Api.User
             {
                 app.UseDeveloperExceptionPage();
             }
-
+            
             // app.UseHttpsRedirection();
 
             app.UseRouting();

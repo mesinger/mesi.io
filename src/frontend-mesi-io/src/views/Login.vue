@@ -1,6 +1,6 @@
 <template>
   <div class="login-form">
-    <LoginForm :hasError="hasError"></LoginForm>
+    <LoginForm></LoginForm>
   </div>
 </template>
 
@@ -20,23 +20,8 @@ import LoginForm from "@/components/LoginForm.vue";
 })
 export default class Login extends Vue {
   @(namespace("profile").Getter("isLoggedIn")) isLoggedIn!: boolean;
-  @(namespace("profile").Getter("numberOfLoginAttempts"))
-  loginAttempts!: number;
 
-  private hasError = false;
-
-  @Watch("loginAttempts")
-  onLoginAttemptsChanged(attempts: number) {
-    if (this.isLoggedIn) {
-      this.hasError = false;
-      this.$router.push("/");
-    }
-    else {
-      this.hasError = true;
-    }
-  }
-
-  mounted() {
+  created() {
     if(this.isLoggedIn) {
       this.$router.push("/");
     }

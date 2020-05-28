@@ -1,34 +1,15 @@
 import { GetterTree } from "vuex";
-import { ProfileState, User } from "./types";
+import { ProfileState, AuthenticationStatus } from "./types";
 import { RootState } from "../types";
 
 export const getters: GetterTree<ProfileState, RootState> = {
   isLoggedIn(state): boolean {
-    if (!state.loggedIn) {
-      return false;
-    }
-
-    if (
-      state.user === undefined ||
-      state.user.userName === undefined ||
-      state.user.email === undefined
-    ) {
-      return false;
-    }
-
-    if (
-      state.token === undefined ||
-      state.token.exp < new Date().getUTCMilliseconds()
-    ) {
-      return false;
-    }
-
-    return true;
+    return !!state.token;
   },
-  numberOfLoginAttempts(state): number {
-    return state.loginAttempts;
+  authStatus(state): AuthenticationStatus {
+    return state.status;
   },
-  currentUser(state): User | undefined {
-    return state.user;
-  },
+  userName(state): string {
+    return (state.user !== undefined) ? state.user.name : "";
+  }
 };

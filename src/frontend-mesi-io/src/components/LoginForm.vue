@@ -1,6 +1,6 @@
 <template>
   <div>
-    <form @submit="submitLogin">
+    <form @submit.prevent="submitLogin">
       <div class="form-group">
         <label for="user-email-input">Email address</label>
         <input
@@ -34,22 +34,25 @@
 <script lang="ts">
 import Vue from "vue";
 import { Action, namespace } from "vuex-class";
-import { Component, Prop } from 'vue-property-decorator';
+import { Component, Prop } from "vue-property-decorator";
 import { AuthenticationRequest } from "@/dto/AuthenticationRequest";
 
 @Component
 export default class LoginForm extends Vue {
   private enteredUserEmail = "";
   private enteredPassword = "";
-  @Prop({required: true, default: false}) hasError!: boolean;
+  private hasError = false;
 
-  @namespace("profile").Action("authenticate") authenticate: any;
+  @(namespace("profile").Action("authenticate")) authenticate: any;
 
-  submitLogin(e: Event): void {
-    const authenticationRequest: AuthenticationRequest = {email: this.enteredUserEmail, password: this.enteredPassword};
-    this.authenticate(authenticationRequest);
-
-    e.preventDefault();
+  submitLogin(): void {
+    const authenticationRequest: AuthenticationRequest = {
+      email: this.enteredUserEmail,
+      password: this.enteredPassword,
+    };
+    this.authenticate(authenticationRequest)
+      .then(() => this.$router.push("/"))
+      .catch(() => this.hasError = true);
   }
 }
 </script>

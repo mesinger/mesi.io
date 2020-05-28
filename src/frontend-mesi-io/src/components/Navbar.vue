@@ -21,11 +21,11 @@
       </div>
       <div class="navbar-collapse collapse w-100 order-3 dual-collapse2">
         <div class="navbar-nav ml-auto" v-if="!isLoggedIn">
-          <a class="navbar-btn btn button-navbar nav-item nav-link" href="/login" v-if="!isLoggedIn">Login</a>
+          <a class="navbar-btn btn button-navbar nav-item nav-link" href="/login">Login</a>
         </div>
         <div class="navbar-nav ml-auto" v-if="isLoggedIn">
           <span class="navbar-text user-welcome-text">
-            Welcome {{ currentUser.userName }}
+            Hello {{ userName }}
           </span>
           <a class="navbar-btn btn button-navbar nav-item nav-link" href="/logout">Logout</a>
         </div>
@@ -36,23 +36,14 @@
 
 <script lang="ts">
 import Vue from "vue";
-import { Component } from 'vue-property-decorator';
-import { Getter, namespace } from 'vuex-class';
+import { Component, Prop } from 'vue-property-decorator';
 import { User } from '@/store/profile/types';
+import { namespace, Getter } from 'vuex-class';
 
 @Component
 export default class NavBar extends Vue {
-  get currentRoute(): string {
-    console.log(this.$router.currentRoute);
-    return "";
-  }
-
-  isAcive(route: string): boolean {
-    return route == this.$router.currentRoute.path;
-  }
-
   @namespace("profile").Getter("isLoggedIn") isLoggedIn!: boolean;
-  @namespace("profile").Getter("currentUser") currentUser!: User | undefined;
+  @namespace("profile").Getter("userName") userName!: string;
 }
 </script>
 
