@@ -11,7 +11,7 @@ export const actions: ActionTree<ProfileState, RootState> = {
   ): Promise<AxiosResponse> {
     return new Promise((resolve, reject) => {
       axios
-        .post("http://localhost:5000/api/user/jwt/token", payload)
+        .post("http://localhost:40200/api/user/jwt/token", payload)
         .then((rsp) => {
           commit("authSuccess", rsp.data.jwt);
           resolve(rsp);

@@ -1,19 +1,12 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
 using Mesi.Io.Api.Clipboard.Data;
 using Mesi.Io.Api.Clipboard.Domain;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.HttpsPolicy;
-using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
 using Microsoft.IdentityModel.Tokens;
 
@@ -31,7 +24,11 @@ namespace Mesi.Io.Api.Clipboard
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddControllers();
+            services.AddCors(options =>
+            {
+                options.AddPolicy(name: "DevSpecificOrigins", builder => builder.AllowAnyOrigin().AllowAnyHeader().AllowAnyMethod());
+                options.AddPolicy("ProductionSpecificOrigins", builder => builder.AllowAnyOrigin().AllowAnyHeader().AllowAnyMethod());
+            });
             
             services.AddAuthentication(cfg =>
                 {
@@ -54,6 +51,8 @@ namespace Mesi.Io.Api.Clipboard
                     };
                 });
             
+            services.AddControllers();
+            
             services.Configure<ClipboardMongoDbSettings>(Configuration.GetSection(nameof(ClipboardMongoDbSettings)));
             services.AddSingleton<IClipboardMongoDbSettings>(sp =>
                 sp.GetRequiredService<IOptions<ClipboardMongoDbSettings>>().Value);
@@ -70,8 +69,17 @@ namespace Mesi.Io.Api.Clipboard
                 app.UseDeveloperExceptionPage();
             }
 
-            app.UseHttpsRedirection();
+            // app.UseHttpsRedirection();
             app.UseRouting();
+            
+            if (env.IsDevelopment())
+            {
+                app.UseCors("DevSpecificOrigins");
+            }
+            else
+            {
+                app.UseCors("ProductionSpecificOrigins");
+            }
 
             app.UseAuthentication();
             app.UseAuthorization();

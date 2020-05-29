@@ -1,7 +1,7 @@
 import Vue from "vue";
 import VueRouter, { RouteConfig } from "vue-router";
 import Home from "../views/Home.vue";
-import Clipboard from "../views/Clipboard.vue";
+import ClipboardView from "../views/ClipboardView.vue";
 import Login from "../views/Login.vue";
 import Logout from "../views/Logout.vue";
 import Registration from "../views/Registration.vue";
@@ -17,7 +17,7 @@ const routes: Array<RouteConfig> = [
   {
     path: "/clipboard",
     name: "Clipboard",
-    component: Clipboard
+    component: ClipboardView
   },
   {
     path: "/login",

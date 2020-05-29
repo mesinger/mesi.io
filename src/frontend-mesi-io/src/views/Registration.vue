@@ -58,7 +58,7 @@ export default class Registration extends Vue {
 
   submitRegistration(e: Event): void {
     axios
-      .post("http://localhost:5000/api/user/register", {
+      .post("http://localhost:40200/api/user/register", {
         email: this.userEmail,
         password: this.userPassword,
         username: this.userName,
