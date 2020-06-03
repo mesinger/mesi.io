@@ -7,7 +7,7 @@ using Microsoft.AspNetCore.Mvc;
 namespace Mesi.Io.Api.User.Controllers
 {
     [ApiController]
-    [Route("api/user")]
+    [Route("user")]
     public class UserController : ControllerBase
     {
         private readonly IUserService _userService;

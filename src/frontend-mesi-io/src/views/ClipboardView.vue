@@ -72,7 +72,7 @@ export default class ClipboardView extends Vue {
     } else {
       axios
         .request({
-          url: `http://localhost:40300/api/clipboard/${this.userId}`,
+          url: `https://api.mesi.io/clipboard/${this.userId}`,
           method: "get",
           headers: {
             "Authorization": `Bearer ${this.token}`
@@ -89,7 +89,7 @@ export default class ClipboardView extends Vue {
   addNewEntry() {
     axios
       .request({
-        url: "http://localhost:40300/api/clipboard/",
+        url: "https://api.mesi.io/clipboard/",
         method: "post",
         data: {
           userid: this.userId,

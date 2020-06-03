@@ -1,6 +1,9 @@
 <template>
   <div class="login-form">
     <LoginForm></LoginForm>
+    <div>
+      Not already registered? <a href="/register">Click here</a>
+    </div>
   </div>
 </template>
 

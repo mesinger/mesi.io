@@ -88,12 +88,16 @@ class Build : NukeBuild
             CopyFile(DockerDirectory / "default.conf", AwsPublishDirectory / "frontend" / "default.conf");
 
             CopyFile(DockerDirectory / "docker-compose.yml", AwsPublishDirectory / "docker-compose.yml");
+            CopyFile(DockerDirectory / "docker-compose-frontend.yml", AwsPublishDirectory / "docker-compose-frontend.yml");
+            CopyFile(DockerDirectory / "docker-compose-api.yml", AwsPublishDirectory / "docker-compose-api.yml");
             CopyFile(DockerDirectory / "start.bat", AwsPublishDirectory / "start.bat");
             CopyFile(DockerDirectory / "stop.bat", AwsPublishDirectory / "stop.bat");
+            CopyFile(DockerDirectory / "start.sh", AwsPublishDirectory / "start.sh");
+            CopyFile(DockerDirectory / "stop.sh", AwsPublishDirectory / "stop.sh");
 
             CompressionTasks.Compress(AwsPublishDirectory, AwsPublishedArchive);
             
-            EnsureCleanDirectory(AwsPublishDirectory);
-            DeleteDirectory(AwsPublishDirectory);
+            // EnsureCleanDirectory(AwsPublishDirectory);
+            // DeleteDirectory(AwsPublishDirectory);
         });
 }

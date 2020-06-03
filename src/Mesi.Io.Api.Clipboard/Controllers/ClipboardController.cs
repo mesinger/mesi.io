@@ -9,7 +9,7 @@ using Microsoft.AspNetCore.Mvc;
 namespace Mesi.Io.Api.Clipboard.Controllers
 {
     [ApiController]
-    [Route("api/clipboard")]
+    [Route("clipboard")]
     public class ClipboardController : AuthorizedController
     {
         private readonly IClipboardService _clipboardService;

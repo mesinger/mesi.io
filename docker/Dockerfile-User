@@ -1,4 +1,7 @@
 ﻿FROM mcr.microsoft.com/dotnet/core/aspnet:3.1
 WORKDIR app
 COPY app .
-ENTRYPOINT ["dotnet", "user-api.dll", "--urls", "http://0.0.0.0:40200"]
+
+EXPOSE 5000
+
+ENTRYPOINT ["dotnet", "user-api.dll", "--urls", "http://0.0.0.0:5000"]

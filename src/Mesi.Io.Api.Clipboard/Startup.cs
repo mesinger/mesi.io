@@ -4,6 +4,7 @@ using Mesi.Io.Api.Clipboard.Domain;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
@@ -20,14 +21,19 @@ namespace Mesi.Io.Api.Clipboard
         }
 
         public IConfiguration Configuration { get; }
+        
+        private readonly string DebugCorsPolicy = "DebugCorsPolicy";
+        private readonly string ProductionCorsPolicy = "ProductionCorsPolicy";
 
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddCors(options =>
             {
-                options.AddPolicy(name: "DevSpecificOrigins", builder => builder.AllowAnyOrigin().AllowAnyHeader().AllowAnyMethod());
-                options.AddPolicy("ProductionSpecificOrigins", builder => builder.AllowAnyOrigin().AllowAnyHeader().AllowAnyMethod());
+                options.AddPolicy(name: DebugCorsPolicy,
+                    builder => { builder.AllowAnyOrigin().AllowAnyMethod().AllowAnyHeader(); });
+                
+                options.AddPolicy(ProductionCorsPolicy, builder => builder.WithOrigins("https://mesi.io").WithMethods("GET", "POST").AllowAnyHeader());
             });
             
             services.AddAuthentication(cfg =>
@@ -74,17 +80,21 @@ namespace Mesi.Io.Api.Clipboard
             
             if (env.IsDevelopment())
             {
-                app.UseCors("DevSpecificOrigins");
+                app.UseCors(DebugCorsPolicy);
             }
             else
             {
-                app.UseCors("ProductionSpecificOrigins");
+                app.UseCors(ProductionCorsPolicy);
             }
 
             app.UseAuthentication();
             app.UseAuthorization();
 
-            app.UseEndpoints(endpoints => { endpoints.MapControllers(); });
+            app.UseEndpoints(endpoints =>
+            {
+                endpoints.MapControllers();
+                endpoints.MapGet("/heartbeat", async context => { await context.Response.WriteAsync("heartbeat"); });
+            });
         }
     }
 }
