@@ -1,0 +1,42 @@
+version: '3'
+
+services:
+  nginx:
+    image: nginx:1.19.0
+    container_name: nginx-reverse-proxy
+
+    ports:
+      - 80:80
+      - 443:443
+
+    network_mode: host
+
+    volumes:
+      - ./data/nginx/app.conf:/etc/nginx/nginx.conf
+      - ./data/certbot/conf:/etc/letsencrypt
+      - ./data/certbot/www:/var/www/certbot
+
+    command: "/bin/sh -c 'while :; do sleep 6h & wait $${!}; nginx -s reload; done & nginx -g \"daemon off;\"'"
+
+  certbot-renew:
+    image: certbot/certbot
+    container_name: certbot-renew
+
+    volumes:
+      - ./data/certbot/conf:/etc/letsencrypt
+      - ./data/certbot/www:/var/www/certbot
+
+    entrypoint: "/bin/sh -c 'trap exit TERM; while :; do certbot renew; sleep 12h & wait $${!}; done;'"
+
+  certbot-certonly:
+    image: certbot/certbot
+    container_name: certbot-certonly
+
+    ports:
+      - 80:80
+    
+    volumes:
+      - ./data/certbot/conf:/etc/letsencrypt
+      - ./data/certbot/www:/var/www/certbot
+
+    entrypoint: certbot certonly --standalone --email mesi.awsgg@gmail.com --agree-tos -d mesi.io -d www.mesi.io -d api.mesi.io
