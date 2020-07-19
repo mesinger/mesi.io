@@ -4,7 +4,7 @@ pipeline {
   stages {
     stage('test') {
       steps {
-        sh 'dotnet test'
+        sh(script: "dotnet test", returnStdout: true)
       }
     }
 
