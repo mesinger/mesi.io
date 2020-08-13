@@ -2,26 +2,6 @@
 
 services:
 
-  mesi-io-user-api:
-    build: ./user-api
-    container_name: mesi-io-user-api
-    
-    ports:
-      - 40200:5000
-
-    networks:
-      - database
-
-    healthcheck:
-      test: curl -f http://localhost:5000/heartbeat || exit 1
-      interval: 1m
-      timeout: 15s
-      retries: 3
-      start_period: 1m
-
-    depends_on:
-      - mesi-io-db
-
   mesi-io-clipboard-api:
     build: ./clipboard-api
     container_name: mesi-io-clipboard-api
