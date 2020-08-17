@@ -1,4 +1,4 @@
 export interface ClipboardEntry {
-    content: string,
-    timeStamp: string
+  content: string;
+  timeStamp: string;
 }

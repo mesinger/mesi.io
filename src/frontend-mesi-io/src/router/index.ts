@@ -2,9 +2,8 @@ import Vue from "vue";
 import VueRouter, { RouteConfig } from "vue-router";
 import Home from "../views/Home.vue";
 import ClipboardView from "../views/ClipboardView.vue";
-import Login from "../views/Login.vue";
-import Logout from "../views/Logout.vue";
-import Registration from "../views/Registration.vue";
+import LoginCallback from "../views/auth/LoginCallback.vue";
+import LoginCallbackSilent from "../views/auth/LoginCallbackSilent.vue";
 
 Vue.use(VueRouter);
 
@@ -20,20 +19,15 @@ const routes: Array<RouteConfig> = [
     component: ClipboardView
   },
   {
-    path: "/login",
-    name: "Login",
-    component: Login
+    path: "/auth/login-callback",
+    name: "LoginCallback",
+    component: LoginCallback
   },
   {
-    path: "/logout",
-    name: "Logout",
-    component: Logout
-  },
-  {
-    path: "/register",
-    name: "Registration",
-    component: Registration
-  },
+    path: "/auth/login-callback-silent",
+    name: "LoginCallbackSilent",
+    component: LoginCallbackSilent
+  }
 ];
 
 const router = new VueRouter({

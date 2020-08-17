@@ -68,17 +68,17 @@ export default class ClipboardView extends Vue {
 
   mounted() {
     if (!this.isLoggedIn) {
-      this.$router.push("/login");
+      this.$router.push("/");
     } else {
       axios
         .request({
           url: `https://api.mesi.io/clipboard/${this.userId}`,
           method: "get",
           headers: {
-            "Authorization": `Bearer ${this.token}`
+            Authorization: `Bearer ${this.token}`
           }
         })
-        .then((rsp) => (this.entries = rsp.data));
+        .then(rsp => (this.entries = rsp.data));
     }
   }
 
@@ -96,10 +96,10 @@ export default class ClipboardView extends Vue {
           content: this.newEntry
         },
         headers: {
-          "Authorization": `Bearer ${this.token}`
+          Authorization: `Bearer ${this.token}`
         }
       })
-      .then((response) => {
+      .then(response => {
         this.entries.push({ content: this.newEntry, timeStamp: "" });
         this.newEntry = "";
       });

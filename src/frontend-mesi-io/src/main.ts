@@ -4,12 +4,14 @@ import router from "./router";
 import store from "./store";
 import axios from "axios";
 
+import "bootstrap";
+
 Vue.config.productionTip = false;
 
 Vue.prototype.$http = axios;
 const token = localStorage.getItem("authorization_token");
-if(token) {
-  Vue.prototype.$http.defaults.header.common['Authorization'] = token;
+if (token) {
+  Vue.prototype.$http.defaults.header.common["Authorization"] = token;
 }
 
 new Vue({
